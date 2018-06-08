@@ -37,6 +37,7 @@ android {
         }
         paid {
             dimension "default"
+            applicationId 'com.udacity.gradle.builditbigger.paid'
         }
     }
 }
