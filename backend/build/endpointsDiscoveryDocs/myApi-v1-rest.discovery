@@ -8,8 +8,8 @@
    }
   }
  },
- "basePath": "/_ah/api/myApi/v1/",
- "baseUrl": "https://myApplicationId.appspot.com/_ah/api/myApi/v1/",
+ "basePath": "/_ah/api/myApi/v1/tellJoke/",
+ "baseUrl": "https://myApplicationId.appspot.com/_ah/api/myApi/v1/tellJoke/",
  "batchPath": "batch",
  "description": "This is an API",
  "discoveryVersion": "v1",
@@ -23,7 +23,17 @@
   "tellJoke": {
    "httpMethod": "POST",
    "id": "myApi.tellJoke",
-   "path": "tellJoke",
+   "parameterOrder": [
+    "name"
+   ],
+   "parameters": {
+    "name": {
+     "location": "path",
+     "required": true,
+     "type": "string"
+    }
+   },
+   "path": "{name}",
    "response": {
     "$ref": "MyBean"
    },
@@ -93,6 +103,6 @@
    "type": "object"
   }
  },
- "servicePath": "myApi/v1/",
+ "servicePath": "myApi/v1/tellJoke/",
  "version": "v1"
 }

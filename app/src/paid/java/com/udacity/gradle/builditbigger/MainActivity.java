@@ -1,11 +1,13 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
+
+import com.creativesourceapps.android.androidlibrary.JokeActivity;
 
 
 class EndpointsAsyncTask extends android.os.AsyncTask<android.util.Pair<android.content.Context, String>, Void, String> {
@@ -44,7 +46,11 @@ class EndpointsAsyncTask extends android.os.AsyncTask<android.util.Pair<android.
 
     @Override
     protected void onPostExecute(String result) {
-        Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+
+        Intent intent = new Intent(context, JokeActivity.class);
+        intent.putExtra("joke", result);
+
+        context.startActivity(intent);
     }
 }
 
