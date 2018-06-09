@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.creativesourceapps.android.androidlibrary.JokeActivity;
+import com.creativesourceapps.android.jokewizard.GetJoke;
 
 
 class EndpointsAsyncTask extends android.os.AsyncTask<android.util.Pair<android.content.Context, String>, Void, String> {
@@ -87,7 +88,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        new EndpointsAsyncTask().execute(new android.util.Pair<android.content.Context, String>(this, "Manfred"));
+        GetJoke getJoke = new GetJoke();
+
+        new EndpointsAsyncTask().execute(new android.util.Pair<android.content.Context, String>(this, getJoke.getJoke()));
     }
 
 

@@ -18,12 +18,11 @@ import javax.inject.Named;
         )
 )
 public class MyEndpoint {
-    GetJoke getJoke = new GetJoke();
 
     @ApiMethod(name = "tellJoke")
-    public MyBean tellJoke(@Named("name") String name) {
+    public MyBean tellJoke(@Named("joke") String joke) {
         MyBean response = new MyBean();
-        response.setData(getJoke.getJoke());
+        response.setData(joke);
 
         return response;
     }

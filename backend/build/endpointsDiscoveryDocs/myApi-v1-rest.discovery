@@ -24,16 +24,16 @@
    "httpMethod": "POST",
    "id": "myApi.tellJoke",
    "parameterOrder": [
-    "name"
+    "joke"
    ],
    "parameters": {
-    "name": {
+    "joke": {
      "location": "path",
      "required": true,
      "type": "string"
     }
    },
-   "path": "{name}",
+   "path": "{joke}",
    "response": {
     "$ref": "MyBean"
    },
