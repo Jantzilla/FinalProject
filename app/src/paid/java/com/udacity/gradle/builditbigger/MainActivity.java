@@ -36,7 +36,7 @@ class EndpointsAsyncTask extends android.os.AsyncTask<android.util.Pair<android.
         String name = params[0].second;
 
         try {
-            return myApiService.sayHi(name).execute().getData();
+            return myApiService.tellJoke(name).execute().getData();
         } catch (java.io.IOException e) {
             return e.getMessage();
         }
