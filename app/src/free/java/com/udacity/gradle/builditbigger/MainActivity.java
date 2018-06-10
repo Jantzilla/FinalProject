@@ -1,5 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -8,16 +9,15 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.creativesourceapps.android.androidlibrary.JokeActivity;
-import com.creativesourceapps.android.jokewizard.GetJoke;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 
-class EndpointsAsyncTask extends android.os.AsyncTask<android.util.Pair<android.content.Context, String>, Void, String> {
+class EndpointsAsyncTask extends android.os.AsyncTask<Context, Void, String> {
     private static com.udacity.gradle.builditbigger.backend.myApi.MyApi myApiService = null;
     private android.content.Context context;
 
     @Override
-    protected String doInBackground(android.util.Pair<android.content.Context, String>... params) {
+    protected String doInBackground(Context... contexts) {
         if(myApiService == null) {  // Only do this once
             com.udacity.gradle.builditbigger.backend.myApi.MyApi.Builder builder = new com.udacity.gradle.builditbigger.backend.myApi.MyApi.Builder(com.google.api.client.extensions.android.http.AndroidHttp.newCompatibleTransport(),
                     new com.google.api.client.extensions.android.json.AndroidJsonFactory(), null)
@@ -36,11 +36,10 @@ class EndpointsAsyncTask extends android.os.AsyncTask<android.util.Pair<android.
             myApiService = builder.build();
         }
 
-        context = params[0].first;
-        String name = params[0].second;
+        context = contexts[0];
 
         try {
-            return myApiService.tellJoke(name).execute().getData();
+            return myApiService.tellJoke().execute().getData();
         } catch (java.io.IOException e) {
             return e.getMessage();
         }
@@ -100,9 +99,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        GetJoke getJoke = new GetJoke();
 
-        new EndpointsAsyncTask().execute(new android.util.Pair<android.content.Context, String>(this, getJoke.getJoke()));
+        new EndpointsAsyncTask().execute(this);
     }
 
 
